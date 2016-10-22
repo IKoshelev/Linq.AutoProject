@@ -4,7 +4,6 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Linq.AutoProject
 {
@@ -101,7 +100,7 @@ namespace Linq.AutoProject
                                     .GetProperties(BindingFlags.Instance | BindingFlags.Public)
                                     .Where(x =>
                                     {
-                                        return x.SetMethod != null && x.SetMethod.IsPublic;
+                                        return x.GetSetMethod(false) != null;
                                     })
                                     .Where(x => propsInTargetTypeBoundByInitExpr.Contains(x.Name) == false)
                                     .ToArray();
@@ -111,7 +110,7 @@ namespace Linq.AutoProject
                         .GetProperties(BindingFlags.Instance | BindingFlags.Public)
                         .Where(x =>
                         {
-                            return x.GetMethod != null && x.GetMethod.IsPublic;
+                            return x.GetGetMethod(false) != null;
                         })
                         .Select(sourceProp =>
                         {
