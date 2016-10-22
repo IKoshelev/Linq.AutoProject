@@ -8,7 +8,7 @@ of base and adding a few more.
   IQueryable<BaseDto> baseQuery = GetBaseQuery();
   
   IQueryable<SubclassDto> query = from baseDto in baseQuery
-                                  let moreData = DataContext.vMoreData.FirstOrDefault(x => x.Id == base.Id)
+                                  let moreData = DataContext.vMoreData.FirstOrDefault(x => x.Id == baseDto.Id)
                                   select new SubclassDto()
                                   {
                                     NewProp1 = moreData.Foo,
@@ -30,7 +30,7 @@ So, we automated the proecess:
  IQueryable<BaseDto> baseQuery = GetBaseQuery();
  
  IQueryable<SubclassDto> query = from baseDto in baseQuery                                  
-                                 let moreData = DataContext.vMoreData.FirstOrDefault(x => x.Id == base.Id) 
+                                 let moreData = DataContext.vMoreData.FirstOrDefault(x => x.Id == baseDto.Id) 
                                  select baseDto .AutoProjectInto(() => new SubclassDto()
                                  {
                                   NewProp1 = moreData.Foo,
