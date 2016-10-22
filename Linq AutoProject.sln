@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Linq.AutoProject", "Linq.AutoProject\Linq.AutoProject.csproj", "{DFD48AA7-3F39-4675-B835-059619E4F430}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Linq.AutoProject.Test", "Linq.AutoProject.Test\Linq.AutoProject.Test.csproj", "{E4634A68-8715-45E2-93C0-A8776577B383}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DFD48AA7-3F39-4675-B835-059619E4F430}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFD48AA7-3F39-4675-B835-059619E4F430}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFD48AA7-3F39-4675-B835-059619E4F430}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFD48AA7-3F39-4675-B835-059619E4F430}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4634A68-8715-45E2-93C0-A8776577B383}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4634A68-8715-45E2-93C0-A8776577B383}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4634A68-8715-45E2-93C0-A8776577B383}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4634A68-8715-45E2-93C0-A8776577B383}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
