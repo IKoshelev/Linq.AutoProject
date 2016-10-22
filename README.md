@@ -7,7 +7,7 @@ of base and adding a few more.
 ```cs
   IQueryable<BaseDto> baseQuery = GetBaseQuery();
   
-  IQueryable<SubclassDto> query = from base in baseQuery
+  IQueryable<SubclassDto> query = from baseDto in baseQuery
                                   let moreData = DataContext.vMoreData.FirstOrDefault(x => x.Id == base.Id)
                                   select new SubclassDto()
                                   {
@@ -15,9 +15,9 @@ of base and adding a few more.
                                     NewProp2 = moreData.Baz,
                                     OldProp1 = moreData.SomeOverridingData,
                                     
-                                    OldProp2 = base.OldProp2,
-                                    OldProp3 = base.OldProp3,
-                                    OldProp4 = base.OldProp4,
+                                    OldProp2 = baseDto.OldProp2,
+                                    OldProp3 = baseDto.OldProp3,
+                                    OldProp4 = baseDto.OldProp4,
                                     //... 20 more projections from BaseDto to SubclassDto
                                   };
   
@@ -29,9 +29,9 @@ So, we automated the proecess:
 ```cs
  IQueryable<BaseDto> baseQuery = GetBaseQuery();
  
- IQueryable<SubclassDto> query = from base in baseQuery                                  
+ IQueryable<SubclassDto> query = from baseDto in baseQuery                                  
                                  let moreData = DataContext.vMoreData.FirstOrDefault(x => x.Id == base.Id) 
-                                 select base.AutoProjectInto(() => new SubclassDto()
+                                 select baseDto .AutoProjectInto(() => new SubclassDto()
                                  {
                                   NewProp1 = moreData.Foo,
                                   NewProp2 = moreData.Baz,
@@ -50,7 +50,7 @@ So, we automated the proecess:
  There can be many such projections per query, and this works with both Linq query form and Linq lambda form, I.E.:
  
  ```cs
- baseQuery.Select(base => base.AutoProjectInto(() => new SubclassDto(){...}))
+ baseQuery.Select(baseDto => baseDto.AutoProjectInto(() => new SubclassDto(){...}))
  ```
  
  I am currently working on releasing this functionality as a NuGet package. 
