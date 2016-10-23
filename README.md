@@ -31,7 +31,7 @@ So, we automated the proecess:
  
  IQueryable<SubclassDto> query = from baseDto in baseQuery                                  
                                  let moreData = DataContext.vMoreData.FirstOrDefault(x => x.Id == baseDto.Id) 
-                                 select baseDto .AutoProjectInto(() => new SubclassDto()
+                                 select baseDto.AutoProjectInto(() => new SubclassDto()
                                  {
                                   NewProp1 = moreData.Foo,
                                   NewProp2 = moreData.Baz,
@@ -53,4 +53,4 @@ So, we automated the proecess:
  baseQuery.Select(baseDto => baseDto.AutoProjectInto(() => new SubclassDto(){...}))
  ```
  
- I am currently working on releasing this functionality as a NuGet package. 
+ Library is available via NuGet prackage https://www.nuget.org/packages/Linq.AutoProject/  
