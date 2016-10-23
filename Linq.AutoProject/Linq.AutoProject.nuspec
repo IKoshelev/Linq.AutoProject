@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Linq.AutoProject</id>
+    <version>1.0.0</version>
+    <title>$title$</title>
+    <authors>github.com/ikoshelev</authors>
+    <owners>github.com/ikoshelev</owners>
+    <licenseUrl>https://opensource.org/licenses/MIT</licenseUrl>
+    <projectUrl>https://github.com/IKoshelev/Linq.AutoProject</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Linq extension method AutoProjectInto, that automates projection of same-name, same-type properties in select statements.</description>
+    <releaseNotes>Initial release</releaseNotes>
+    <copyright>Copyright 2016</copyright>
+    <tags>Linq Projection AutoProjection Project AutoProject AutoMapping Inheritance</tags>
+  </metadata>
+</package>
