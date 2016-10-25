@@ -53,4 +53,4 @@ So, we automated the proecess:
  baseQuery.Select(baseDto => baseDto.AutoProjectInto(() => new SubclassDto(){...}))
  ```
  
- Library is available via NuGet prackage https://www.nuget.org/packages/Linq.AutoProject/  
+ Library is available via NuGet prackage https://www.nuget.org/packages/Linq.AutoProject
