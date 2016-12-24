@@ -1,5 +1,7 @@
 # Linq.AutoProject
 
+ Library is available via NuGet prackage https://www.nuget.org/packages/Linq.AutoProject
+
 This project came about becuase my team needed to facilitate Linq queries in Enity Framework 
 where a base class DTO needs to be projected into subclass DTO by copying all properties 
 of base and adding a few more.
@@ -53,4 +55,3 @@ So, we automated the proecess:
  baseQuery.Select(baseDto => baseDto.AutoProjectInto(() => new SubclassDto(){...}))
  ```
  
- Library is available via NuGet prackage https://www.nuget.org/packages/Linq.AutoProject
