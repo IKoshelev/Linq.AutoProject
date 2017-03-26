@@ -55,5 +55,22 @@ namespace Linq.AutoProject
             var newQuery = source.Provider.CreateQuery<T>(newExpr);
             return newQuery;
         }
+
+        public static IQueryable<TTarget> AutoProject<TSource, TTarget>(
+            this IQueryable<TSource> source,
+            Expression<Func<TSource, TTarget>> manualProjectionPart) 
+        {
+            var activator = new AutoProjectActivator();
+
+            var modifiedInitExpression = activator.CreateSubstituteMemberInitExprFromProjectMethodCall(manualProjectionPart);
+
+            var modifiedLamda = Expression.Lambda(
+                modifiedInitExpression,
+                manualProjectionPart.Parameters);
+
+            var modifedFunc = (Expression<Func<TSource, TTarget>>)modifiedLamda;
+
+            return source.Select(modifedFunc);
+        }
     }
 }

@@ -42,16 +42,17 @@ namespace Linq.AutoProject
             public PropertyInfo PropInTargetType { get; set; }
         }
 
-        private Expression CreateSubstituteMemberInitExprFromProjectMethodCall(MethodCallExpression node)
+        internal Expression CreateSubstituteMemberInitExprFromProjectMethodCall(Expression node)
         {
-            Expression sourceExpr = node.Arguments[0];
-            Type sourceType = (node.Arguments[0].Type);
-            MemberInitExpression targetInitExpr = ExtractMemberInitExpressionFromProjectArgument(node.Arguments[1]);
+            ParseMethodCallOrLambda(node, 
+                out Expression sourceExpr, 
+                out Type sourceType, 
+                out MemberInitExpression targetInitExpr);
 
             PropMatch[] projectablePropertiesNotBoundByTargetInit
                 = DeterminePropertiesThatCanBeProjectedFromSourceToTargetAndAreNotBoundByTargetInit(sourceType, targetInitExpr);
 
-            MemberAssignment[] additonalBindings 
+            MemberAssignment[] additonalBindings
                 = GetMemberAssignmentExpressionsProjectingSourceIntoTarget(sourceExpr, projectablePropertiesNotBoundByTargetInit);
 
             var combinedBindings = targetInitExpr.Bindings.Union(additonalBindings);
@@ -59,6 +60,40 @@ namespace Linq.AutoProject
             var newInitExpr = Expression.MemberInit(targetInitExpr.NewExpression, combinedBindings);
 
             return newInitExpr;
+        }
+
+        private void ParseMethodCallOrLambda(Expression node, out Expression sourceExpr, out Type sourceType, out MemberInitExpression targetInitExpr)
+        {
+            // using ValueTupples here would incur a dependency on the user with lower .NET Framework version :-(
+            switch (node)
+            {
+                case MethodCallExpression methodCallExpr:
+                    sourceExpr = methodCallExpr.Arguments[0];
+                    sourceType = (methodCallExpr.Arguments[0].Type);
+                    targetInitExpr = ExtractMemberInitExpressionFromProjectArgument(methodCallExpr.Arguments[1]);
+                    break;
+                case LambdaExpression lambdaExpr:
+                    sourceExpr = lambdaExpr.Parameters[0];
+                    sourceType = sourceExpr.Type;
+                    targetInitExpr = ExtractMemberInitExpressionFromLambda(lambdaExpr);
+                    break;
+                default:
+                    throw new ArgumentException($"Can't handle expression of type {node.NodeType}");
+            }
+        }
+
+        private MemberInitExpression ExtractMemberInitExpressionFromLambda(LambdaExpression expression)
+        {
+            switch (expression.Body)
+            {
+                case NewExpression newExpr:
+                    return Expression.MemberInit(newExpr);
+                case MemberInitExpression memberInitExpr:
+                    return memberInitExpr;
+                default:
+                    throw new ArgumentException($"Can't handle expression of type {expression.NodeType}");
+            }
+
         }
 
         private MemberInitExpression ExtractMemberInitExpressionFromProjectArgument(Expression expression)

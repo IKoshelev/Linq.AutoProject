@@ -54,8 +54,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="AutoProjectAdvancedTest.cs" />
-    <Compile Include="AutoProjectBasicTest.cs" />
+    <Compile Include="AutoProjectIntoAdvancedTest.cs" />
+    <Compile Include="AutoProjectIntoBasicTest.cs" />
+    <Compile Include="AutoProjectTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

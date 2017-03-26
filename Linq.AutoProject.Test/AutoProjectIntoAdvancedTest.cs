@@ -7,7 +7,7 @@ using Assert = Xunit.Assert;
 namespace Linq.AutoProject.Test
 {
     [TestClass]
-    public class AutoProjectAdvancedTest
+    public class AutoProjectIntoAdvancedTest
     {
         public class PropTypeMismatchSource
         {
@@ -20,7 +20,7 @@ namespace Linq.AutoProject.Test
         }
 
         [TestMethod]
-        public void AutoProject_OnlyProjectsMatchingTypes()
+        public void AutoProjectInto_OnlyProjectsMatchingTypes()
         {
             var subject = Enumerable.Range(1, 1).AsQueryable()
                                 .Select(x => new PropTypeMismatchSource()
@@ -50,7 +50,7 @@ namespace Linq.AutoProject.Test
         }
 
         [TestMethod]
-        public void AutoProject_OnlyProjectsWhenExitSourceGetterAndTargetSetter()
+        public void AutoProjectInto_OnlyProjectsWhenExitSourceGetterAndTargetSetter()
         {
             var subject = Enumerable.Range(1, 1).AsQueryable()
                                 .Select(x => new GetterSetterMismatchSource()
@@ -87,7 +87,7 @@ namespace Linq.AutoProject.Test
         }
 
         [TestMethod]
-        public void AutoProject_PreservesContstructorInvocation()
+        public void AutoProjectInto_PreservesContstructorInvocation()
         {
             var subject = Enumerable.Range(1, 1).AsQueryable()
                                 .Select(x => new ConstructorParamsPreservationSource()
@@ -136,7 +136,7 @@ namespace Linq.AutoProject.Test
         }
 
         [TestMethod]
-        public void AutoProject_ProjectsComplexTypeProperties()
+        public void AutoProjectInto_ProjectsComplexTypeProperties()
         {
             var subject = Enumerable.Range(1, 1).AsQueryable()
                                 .Select(x => new ComplexTypeProjectionSource()
@@ -160,7 +160,7 @@ namespace Linq.AutoProject.Test
         }
 
         [TestMethod]
-        public void AutoProject_PreservesComplexBindings()
+        public void AutoProjectInto_PreservesComplexBindings()
         {
             var subject = Enumerable.Range(1, 1).AsQueryable()
                               .Select(x => new object())
@@ -173,6 +173,5 @@ namespace Linq.AutoProject.Test
 
             Assert.Equal(result.Foo, 15);
         }
-
     }
 }

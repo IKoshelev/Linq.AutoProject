@@ -7,7 +7,7 @@ using Assert = Xunit.Assert;
 namespace Linq.AutoProject.Test
 {
     [TestClass]
-    public class AutoProjectBasicTest
+    public class AutoProjectIntoBasicTest
     {
         public class TestType
         {
@@ -16,7 +16,7 @@ namespace Linq.AutoProject.Test
         }
 
         [TestMethod]
-        public void AutoProject_ThrowsIfActivateAutoProjectsWasNotCalled()
+        public void AutoProjectInto_ThrowsIfActivateAutoProjectsWasNotCalled()
         {
             var subject = Enumerable.Range(1, 1).AsQueryable()
                                 .Select(x => new object())
@@ -31,7 +31,7 @@ namespace Linq.AutoProject.Test
         }
 
         [TestMethod]
-        public void AutoProject_CanWorkWithoutPropBindingSection()
+        public void AutoProjectInto_CanWorkWithoutPropBindingSection()
         {
             var subject = Enumerable.Range(1, 1).AsQueryable()
                                 .Select(x => new object())
@@ -41,7 +41,7 @@ namespace Linq.AutoProject.Test
         }
 
         [TestMethod]
-        public void AutoProject_ActivationDoesNothingIfMarkerMethodNotFound()
+        public void AutoProjectInto_ActivationDoesNothingIfMarkerMethodNotFound()
         {
             var subject = Enumerable.Range(1, 1).AsQueryable()
                                 .Select(x => new object())
@@ -54,7 +54,7 @@ namespace Linq.AutoProject.Test
         }
 
         [TestMethod]
-        public void AutoProject_ProjectsUntouchedProperties()
+        public void AutoProjectInto_ProjectsUntouchedProperties()
         {
             var subject = Enumerable.Range(1, 1).AsQueryable()
                                .Select(x => new TestType()
@@ -71,7 +71,7 @@ namespace Linq.AutoProject.Test
         }
 
         [TestMethod]
-        public void AutoProject_DoesNotProjectsProperties()
+        public void AutoProjectInto_DoesNotProjectsProperties()
         {
             var subject = Enumerable.Range(1, 1).AsQueryable()
                                .Select(x => new TestType()
@@ -91,7 +91,7 @@ namespace Linq.AutoProject.Test
         }
 
         [TestMethod]
-        public void AutoProject_ActivatesMultipleProjections()
+        public void AutoProjectInto_ActivatesMultipleProjections()
         {
             var subject = Enumerable.Range(1, 1).AsQueryable()
                                 .Select(x => new TestType()
@@ -119,7 +119,7 @@ namespace Linq.AutoProject.Test
         }
 
         [TestMethod]
-        public void AutoProject_CanBeUsedWithLinqQuery()
+        public void AutoProjectInto_CanBeUsedWithLinqQuery()
         {
             var subject = from source in Enumerable.Range(1, 1).AsQueryable()
                                .Select(x => new TestType()
