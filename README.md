@@ -1,4 +1,4 @@
-# Linq.AutoProject
+ # Linq.AutoProject
 
  Library is available via NuGet prackage https://www.nuget.org/packages/Linq.AutoProject
 
@@ -58,7 +58,7 @@ So, we automated the proecess:
  1.0.1 Update:
  Added shortcut extension method for when you don't need query form at all.
   ```cs
- baseQuery.AutoProject(baseDto =>new SubclassDto(){...})
+ baseQuery.AutoProject(baseDto => new SubclassDto(){...})
  ```
  
  
