@@ -52,6 +52,13 @@ So, we automated the proecess:
  There can be many such projections per query, and this works with both Linq query form and Linq lambda form, I.E.:
  
  ```cs
- baseQuery.Select(baseDto => baseDto.AutoProjectInto(() => new SubclassDto(){...}))
+ baseQuery.Select(baseDto => baseDto.AutoProjectInto(() => new SubclassDto(){...})).ActivateAutoProjects()
  ```
+ 
+ 1.0.1 Update:
+ Added shortcut extension method for when you don't need query form at all.
+  ```cs
+ baseQuery.AutoProject(baseDto =>new SubclassDto(){...})
+ ```
+ 
  
