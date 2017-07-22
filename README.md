@@ -1,9 +1,13 @@
- # Linq.AutoProject
 
  Library is available via NuGet prackage https://www.nuget.org/packages/Linq.AutoProject
+ 
  Inner workings of the library are explained in articles:
+ 
  http://ikoshelev.azurewebsites.net/search/id/1/Expression-trees-and-advanced-queries-in-CSharp-01-IQueryable-and-Expression-Tree-basics
+ 
  http://ikoshelev.azurewebsites.net/search/id/3/Expression-trees-and-advanced-queries-in-CSharp-03-Expression-Tree-modification
+
+# Linq.AutoProject
 
 This project came about becuase my team needed to facilitate Linq queries in Enity Framework 
 where a base class DTO needs to be projected into subclass DTO by copying all properties 
